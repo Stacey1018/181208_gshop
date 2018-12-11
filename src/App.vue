@@ -6,7 +6,13 @@
 </template>
 <script>
 import FootetGuide from './components/FootetGuide/FootetGuide'
+import {reqFoodTypes} from './api'
 export default {
+  mounted(){
+    this.$store.dispatch('getAddress')
+    // const result = await reqFoodTypes()
+    // console.log(result);
+  },
 	components: {
 		FootetGuide
 	}
