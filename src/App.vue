@@ -1,17 +1,22 @@
 <template>
-	<div id="app">
-		<router-view/>
-		<FootetGuide v-show="$route.meta.showFooter"/>
-	</div>
+  <div id="app">
+    <router-view/>
+    <FootetGuide v-show="$route.meta.showFooter" />
+  </div>
 </template>
 <script>
+import {mapActions} from 'vuex'
 import FootetGuide from './components/FootetGuide/FootetGuide'
-import {reqFoodTypes} from './api'
 export default {
   mounted(){
-    this.$store.dispatch('getAddress')
+    // this.$store.dispatch('getAddress')
     // const result = await reqFoodTypes()
     // console.log(result);
+    this.getAddress()
+    this.getUserInfo()
+  },
+  methods:{
+    ...mapActions(['getAddress','getUserInfo'])
   },
 	components: {
 		FootetGuide
@@ -20,10 +25,11 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus">
-.app
-	width 100%
-	height: 100%
-	background: #f5f5f5
+.app {
+  width: 100%;
+  height: 100%;
+  background: #f5f5f5;
+}
 </style>
 
 
