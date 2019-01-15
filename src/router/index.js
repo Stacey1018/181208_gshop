@@ -8,47 +8,74 @@ import Search from '../pages/Search/Search.vue'
 import Order from '../pages/Order/Order.vue'
 import Profile from '../pages/Profile/Profile.vue'
 import Login from '../pages/Login/Login.vue'
+import Shop from '../pages/Shop/Shop.vue'
+import ShopGoods from '../pages/Shop/ShopGoods/ShopGoods.vue'
+import ShopRatings from '../pages/Shop/ShopRatings/ShopRatings.vue'
+import ShopInfo from '../pages/Shop/ShopInfo/ShopInfo.vue'
 
 // 声明使用插件
 Vue.use(VueRouter)
-    // VueRouter是构造函数 要new一个对象
+// VueRouter是构造函数 要new一个对象
 export default new VueRouter({
-    // 所有路由
-    routes: [{
-            path: '/',
-            redirect: '/msite'
+  // 所有路由
+  routes: [
+    {
+      path: '/',
+      redirect: '/msite'
+    },
+    {
+      path: '/msite',
+      component: MSite,
+      meta: {
+        showFooter: true
+      }
+    },
+    {
+      path: '/search',
+      component: Search,
+      meta: {
+        showFooter: true
+      }
+    },
+    {
+      path: '/order',
+      component: Order,
+      meta: {
+        showFooter: true
+      }
+    },
+    {
+      path: '/profile',
+      component: Profile,
+      meta: {
+        showFooter: true
+      }
+    },
+    {
+      path: '/login',
+      component: Login
+    },
+    {
+      path: '/shop',
+      component: Shop,
+      children: [
+        {
+          path: '/shop/goods',
+          component: ShopGoods
         },
         {
-            path: '/msite',
-            component: MSite,
-            meta: {
-                showFooter: true
-            }
+          path: '/shop/ratings',
+          component: ShopRatings
         },
         {
-            path: '/search',
-            component: Search,
-            meta: {
-                showFooter: true
-            }
+          path: '/shop/info',
+          component: ShopInfo
         },
         {
-            path: '/order',
-            component: Order,
-            meta: {
-                showFooter: true
-            }
-        },
-        {
-            path: '/profile',
-            component: Profile,
-            meta: {
-                showFooter: true
-            }
-        },
-        {
-            path: '/login',
-            component: Login
+          path: '',
+          redirect: '/shop/goods'
         }
-    ]
+      ]
+    }
+  ]
 })
